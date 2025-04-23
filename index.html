@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Event Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Game Event Registration</h1>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="name">Full Name*</label>
+                <input type="text" id="name" name="name" required>
+                <span class="error-message" id="nameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email*</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error-message" id="emailError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age*</label>
+                <input type="number" id="age" name="age" min="12" max="99" required>
+                <span class="error-message" id="ageError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="game">Select Game*</label>
+                <select id="game" name="game" required>
+                    <option value="">-- Choose a game --</option>
+                    <option value="valorant">Valorant</option>
+                    <option value="fortnite">Fortnite</option>
+                    <option value="csgo">CS:GO</option>
+                    <option value="lol">League of Legends</option>
+                </select>
+                <span class="error-message" id="gameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Skill Level*</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="skill" value="beginner" required> Beginner
+                    </label>
+                    <label>
+                        <input type="radio" name="skill" value="intermediate"> Intermediate
+                    </label>
+                    <label>
+                        <input type="radio" name="skill" value="advanced"> Advanced
+                    </label>
+                </div>
+                <span class="error-message" id="skillError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="team">Team Name (optional)</label>
+                <input type="text" id="team" name="team">
+            </div>
+
+            <button type="submit" class="btn">Register Now</button>
+        </form>
+
+        <div id="successMessage" class="success-message">
+            <i class="fas fa-check-circle"></i>
+            <h2>Registration Successful!</h2>
+            <p>Thank you for registering for our game event.</p>
+            <button id="resetForm" class="btn">Register Another Player</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
