@@ -83,17 +83,6 @@ select:focus {
     cursor: pointer;
 }
 
-.checkbox-group {
-    margin-top: 1.5rem;
-}
-
-.checkbox-group label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-}
-
 .error-message {
     color: var(--error-color);
     font-size: 0.9rem;
@@ -121,6 +110,15 @@ select:focus {
     transform: translateY(-2px);
 }
 
+.btn-secondary {
+    background: #6c757d;
+    margin-top: 0.5rem;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
 /* Success Message */
 .success-message {
     text-align: center;
@@ -139,6 +137,42 @@ select:focus {
     margin-bottom: 1rem;
 }
 
+/* Registrations Display Styles */
+.registrations-display {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.registrations-display h2 {
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+#registrationsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.registration-card {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 5px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.registration-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.registration-card p {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 600px) {
     body {
@@ -152,5 +186,9 @@ select:focus {
     .radio-group {
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    #registrationsList {
+        grid-template-columns: 1fr;
     }
 }
