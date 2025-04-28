@@ -1,7 +1,11 @@
-// Variable declarations demonstrating different types
+// Global array to store registrations
+const registrations = [];
+
+// Variable declarations
 const registrationForm = document.getElementById('registrationForm');
 const successMessage = document.getElementById('successMessage');
 const resetFormButton = document.getElementById('resetForm');
+const clearRegistrationsButton = document.getElementById('clearRegistrations');
 
 // String variables
 const requiredFieldMessage = 'This field is required';
@@ -10,6 +14,9 @@ const ageRestrictionMessage = 'You must be between 12 and 99 years old';
 
 // Boolean flag to track form validity
 let isFormValid = false;
+
+// Initialize the display
+updateRegistrationsDisplay();
 
 // Event handler for form submission
 registrationForm.addEventListener('submit', function(event) {
@@ -26,20 +33,28 @@ registrationForm.addEventListener('submit', function(event) {
     validateGame();
     validateSkill();
 
-    // If form is valid, show success message
+    // If form is valid, process the submission
     if (isFormValid) {
-        registrationForm.style.display = 'none';
-        successMessage.style.display = 'block';
-        
-        // Log form data to console (could be sent to server in real app)
         const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
             age: document.getElementById('age').value,
             game: document.getElementById('game').value,
             skill: document.querySelector('input[name="skill"]:checked').value,
-            team: document.getElementById('team').value || 'None'
+            team: document.getElementById('team').value || 'None',
+            timestamp: new Date().toLocaleString()
         };
+        
+        // Add to global array
+        registrations.push(formData);
+        
+        // Update the display
+        updateRegistrationsDisplay();
+        
+        // Show success message
+        registrationForm.style.display = 'none';
+        successMessage.style.display = 'block';
+        
         console.log('Form submitted:', formData);
         
         // Demonstrate switch statement with the selected game
@@ -67,6 +82,12 @@ resetFormButton.addEventListener('click', function() {
     registrationForm.style.display = 'block';
     successMessage.style.display = 'none';
     registrationForm.reset();
+});
+
+// Event handler for clear registrations button
+clearRegistrationsButton.addEventListener('click', function() {
+    registrations.length = 0; // Clear the array
+    updateRegistrationsDisplay();
 });
 
 // Validation functions
@@ -137,6 +158,28 @@ function resetErrorMessages() {
     
     errorMessages.forEach(msg => msg.textContent = '');
     inputs.forEach(input => input.style.borderColor = '#ddd');
+}
+
+// Function to update the registrations display
+function updateRegistrationsDisplay() {
+    const registrationsList = document.getElementById('registrationsList');
+    
+    // Clear current display
+    registrationsList.innerHTML = '';
+    
+    // Add each registration as a card
+    registrations.forEach(reg => {
+        const card = document.createElement('div');
+        card.className = 'registration-card';
+        card.innerHTML = `
+            <h3>${reg.name}</h3>
+            <p><strong>Game:</strong> ${reg.game}</p>
+            <p><strong>Skill:</strong> ${reg.skill}</p>
+            <p><strong>Team:</strong> ${reg.team}</p>
+            <p><small>Registered: ${reg.timestamp}</small></p>
+        `;
+        registrationsList.appendChild(card);
+    });
 }
 
 // Event listener for email field to demonstrate real-time validation
